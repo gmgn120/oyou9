@@ -1,0 +1,21 @@
+<hr>
+<div class="chats">
+  <div class="chat">
+    <% if @chats.present? %>
+      <% @chats.each do |c| %>
+        <div class="chat-box">
+          <div class="chat-hukidashi"> <strong><%= c.chat %></strong> <br>
+            <%= c.created_at.strftime("%Y-%m-%d %H:%M")%>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="posts">
+    <%= form_for @chat do |f| %>
+      <%= f.text_field :chat, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.submit "投稿",class: 'form-submit'%>
+    <% end %>
+  </div>
+</div>
